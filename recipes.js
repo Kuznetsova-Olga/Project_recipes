@@ -19,4 +19,4 @@ def get_content(html):
   return recipes
 html = get_html(URL)
 recipes_site = get_content(html.text)
-print(recipes_site)
+print(recipes_site
