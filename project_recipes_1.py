@@ -65,3 +65,25 @@ for item in user_input.split(','):
 recipes_all_ingredients, possible_recipes_with_missing, missing_for_other = find_possible_recipes(user_ingredients, recipes_site)
 
 
+if recipes_all_ingredients:
+    print("\nВам не нужны дополнительные ингредиенты. Вы cможете приготовить следующее блюдо:")
+    for recipe in recipes_all_ingredients:
+        print(f"- {recipe['Название']}")
+        extra_ingredients = set(user_ingredients) - recipe["Ингредиенты"]
+        if extra_ingredients:
+            print(f"- Лишние ингредиенты из вашего списка: {', '.join(extra_ingredients)}")
+elif possible_recipes_with_missing:
+    print("\nВам нужны дополнительные ингредиенты. Добавив их, вы можете приготовить следующие блюда:")
+    for recipe in possible_recipes_with_missing:
+        print(f"{recipe['Название']}")
+        info = missing_for_other.get(recipe['Название'])
+        extra_ingredients = set(user_ingredients) - recipe["Ингредиенты"]
+        if extra_ingredients:
+            print(f"- Лишние ингредиенты из вашего списка: {', '.join(extra_ingredients)}")
+        if info:
+            print(f"- Недостающие ингредиенты: {', '.join(info['Недостающее'])}")
+else:
+    print("К сожалению, по вашим ингредиентам не найдено подходящих рецептов.")
+
+
+
