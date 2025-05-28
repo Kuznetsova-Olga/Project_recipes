@@ -54,5 +54,14 @@ html = get_html(URL)
 recipes_site = get_content(html.text)
 for i in recipes_site:
     print(i["Ингредиенты"])
+    
+
+user_input = input("Введите имеющиеся у вас ингредиенты (через запятую): ").strip()
+user_ingredients = set()
+for item in user_input.split(','):
+    user_ingredients.add(item.strip().capitalize())
+
+
+recipes_all_ingredients, possible_recipes_with_missing, missing_for_other = find_possible_recipes(user_ingredients, recipes_site)
 
 
