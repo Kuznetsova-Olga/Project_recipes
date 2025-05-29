@@ -52,8 +52,6 @@ def find_possible_recipes(user_ingredients, recipes_site):
 # получение списка со всеми рецептами (один словарь - один рецепт)
 html = get_html(URL)
 recipes_site = get_content(html.text)
-for i in recipes_site:
-    print(i["Ингредиенты"])
     
 
 user_input = input("Введите имеющиеся у вас ингредиенты (через запятую): ").strip()
